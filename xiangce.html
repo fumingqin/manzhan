@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>漫相册</title>
+<meta name="fragment" content="!">
+<meta name='robots' content='index,follow' />
+<link rel='stylesheet' id='generalStyle-css'  href='style_light.css' type='text/css' media='all' />
+<link rel='stylesheet' id='contentFont-css'  href='http://fonts.googleapis.com/css?family=PT+Sans:regular&amp;subset=cyrillic,latin' type='text/css' media='all' />
+<link id='headerFont-css' href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+<link rel='stylesheet' id='modal-css'  href='js/prettyPhoto/css/prettyPhoto.css' type='text/css' media='all' />
+<script type='text/javascript' src='js/jquery-1.7.min.js'></script>
+<script type='text/javascript' src='js/jquery.easing.1.3.js'></script>
+<script type='text/javascript' src='js/prettyPhoto/js/jquery.prettyPhoto.js'></script>
+<script type='text/javascript' src='js/jquery.quicksand.js'></script>
+<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="js/jquery.history.js"></script>
+<script type='text/javascript' src="main.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon_light.ico" />
+<script type='text/javascript'>
+var bgTime = 5000; // bg Image/Video animation display duration
+var bgPaused = false; // bg Image/Video animation paused
+var menuTime = 600; // menu delay
+var autoPlay = true; // Background audio autoplay
+var loop = true; // Background audio loop or next song
+var twtTime = 3000; // Twitter display duration
+var prettyTheme = 'light_square'; //Pretty Photo Plug-in Teheme
+
+var normalFade = false; // Normal fade animation
+var frontPage = ''; // Front Page URL
+var btnSoundURL = 'http://files.renklibeyaz.com/sounds/button2'; // Button Hover Sound
+var menuPositionFixed = false;
+
+//v1.2
+var videoPaused = false;
+var menuAlwaysOpen = false;
+var bgStretch = true;
+</script>
+<script type='text/javascript' src="js/froogaloop.js"></script>
+<style type="text/css">
+#bodyLoading #loading {
+	color: #F00;
+}
+</style>
+</head>
+<body>
+<div id="body-wrapper">
+	<!-- BEGIN: Main Elements; Please don't change these items -->
+	<div id="bgImage"><div id="bgImageWrapper"></div></div>
+	<div id="bgPattern"></div>
+	<div id="bgText"><h3></h3><div class="subText"></div></div>
+	<div id="content">
+		<div id="contentBox"></div>
+		<div id="contentLoading">
+			<div id="CtLoading">
+				Loading<br/>
+				<img src="images/loading1.gif" width="80" height="10" alt="" />
+			</div>
+		</div>
+	</div>
+	<!-- END: Main Elements -->
+	<!-- BEGIN: Vertical Side Bar -->
+	<!-- 
+		// Every <li> includes Thumbnail, Video or Background Image
+		Caption and Description elementes
+	-->
+	<ul id="bgImages">
+		<!-- BEGIN: Background Element -->
+		<li>
+			<!-- Thumbnail Image must be 120x80px  and class="thumb" -->
+			<img class="thumb" src="images/background/bg1_th.jpg" alt="" />
+			<!-- 
+				If you want to use IMAGE at background its width must be between 1024x768px and 1920x1080px. And you must use class="source".
+				If you want to use VIDEO at background it must be in iframe tags like below;
+				<iframe src="http://player.vimeo.com/video/18303923?title=0&amp;byline=0&amp;portrait=0" width="400" height="225" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
+				Note: You must define its width and height values of your original video. It supports youtube or vimeo.
+			-->
+			<img class="source" src="images/background/bg1.jpg" alt="" />
+
+			<!-- BEGIN: description; h3 and p tags are optional -->
+			<h3>❤❤欢&nbsp;迎&nbsp;来&nbsp;到&nbsp;漫&nbsp;站❤❤</h3>
+			<p></p>
+			<!-- END: description -->
+		</li>
+		<!-- END: Bakground Element -->
+		<li>
+			<img class="thumb" src="images/background/bg2_th.jpg" alt="" />
+			<img class="source" src="images/background/bg2.jpg" alt="" />
+			<h3>❤老&nbsp;司&nbsp;机&nbsp;的&nbsp;天&nbsp;堂❤</h3>
+			<p>在线动漫，你还在等什么呢，跟里番老司机一块上车吧。</p>
+		</li>
+		<li>
+			<img class="thumb" src="images/background/bg3_th.jpg" alt="" />
+			<img class="source" src="images/background/bg3.jpg" alt="" />
+			<h3>❤漫&nbsp;站&nbsp;分&nbsp;享&nbsp;全&nbsp;球&nbsp;的&nbsp;资&nbsp;源❤</h3>
+			<p>在这里可以分享来自每个人的动漫资源</p>
+		</li>
+		<li>
+			<img class="thumb" src="images/background/bg4_th.jpg" alt="" />
+			<img class="source" src="images/background/bg4.jpg" alt="" />
+			<h3>❤登&nbsp;录&nbsp;漫&nbsp;站&nbsp;获&nbsp;得&nbsp;更&nbsp;多&nbsp;资&nbsp;源❤</h3>
+			<p>在漫站登入用户可以获得更多的下载资源</p>
+		</li>
+		<li>
+			<img class="thumb" src="images/background/bg5_th.jpg" alt="" />
+			<img class="source" src="images/background/bg5.jpg" alt="" />
+			<h3>❤漫&nbsp;站&nbsp;各&nbsp;工&nbsp;作&nbsp;组&nbsp;总&nbsp;招&nbsp;募&nbsp;帖❤</h3>
+			<p>美工组。新闻组。萌化组。宣传组。轻小说组。字幕组。海贼季刊。音声组。漫画组。</p>
+		</li>
+		<li>
+			<img class="thumb" src="images/background/bg6_th.jpg" alt="" />
+			<img class="source" src="images/background/bg6.jpg" alt="" />
+			<h3>❤关&nbsp;于&nbsp;站&nbsp;点&nbsp;人&nbsp;员❤</h3>
+			<p>本站点由站长：小钦 建站而成</p>
+		</li>
+        <li>
+			<img class="thumb" src="images/background/bg7_th.jpg" alt="" />
+			<img class="source" src="images/background/bg7.jpg" alt="" />
+			<h3>❤最&nbsp;&nbsp;后......❤</h3>
+			<p>祝大家在漫站玩得愉快~！</p>
+		</li>
+        <li>
+			<img class="thumb" src="images/background/bg8_th.jpg" alt="" />
+			<img class="source" src="images/background/bg8.jpg" alt="" />
+			<h3>❤素&nbsp;材&nbsp;来&nbsp;源❤</h3>
+			<p>樱花庄的宠物女孩，伪恋，从零开始的异世界生活，缘之空，游戏人生。</p>
+		</li>
+        <li>
+			<img class="thumb" src="images/background/bg9_th.jpg" alt="" />
+			<img class="source" src="images/background/bg9.jpg" alt="" />
+			<h3>❤其&nbsp;&nbsp;实.....❤</h3>
+			<p>我是打算制作一个镜面相册切换的....但是好像太臃肿了</p>
+		</li>
+        <li>
+			<img class="thumb" src="images/background/bg10_th.jpg" alt="" />
+			<img class="source" src="images/background/bg10.jpg" alt="" />
+			<h3>❤联&nbsp;系&nbsp;站&nbsp;长❤</h3>
+			<p>邮件：32589407@qq.com   </p>
+            <p>QQ：32589407</p>
+		</li>
+	</ul>
+	
+	<!-- BEGIN: Main Menu -->
+	<div id="menu-container">
+		<!-- BEGIN: Logo -->
+		<div id="logo">
+			<img src="pic/leimu22.jpg" title="小小漫站" />
+		</div>
+		<!-- END: Logo -->
+		
+		<!-- 
+			// Menu classes must be used with the same hierarchy and the same class names
+		-->
+		<div id="mainmenu">
+			<div class="menu-header">
+			<ul id="menu-main-menu" class="menu">
+				<li id="menu-item-1">
+					<a href="daohang.html"><span class="title">HOME</span></a>
+
+				</li>
+				<li id="menu-item-2">
+					<a href="zhuzhan.html"><span class="title">漫站</span></a>
+					
+				</li>
+				<li id="menu-item-3">
+					<a href="boke.html" target="_blank"><span class="title">博客</span></a>
+				</li>
+				<li id="menu-item-4"><a href="qq.html"><span class="title">联系站长</span></a></li>
+			</ul>
+			</div>
+		</div>
+		
+		<!-- BEGIN: Menu Opener; Please dont remove this element to use menu. -->
+		<div id="menuOpener">MOE</div>
+		<div id="menuCloser">CLOSE</div>
+		<!-- END: Menu Opener -->
+	</div>
+	<!-- END: Main Menu -->
+	
+	
+	
+	<!-- BEGIN: Audio Controller; Please don't remove this element	-->
+	<div id="audioControls">
+		<a class="btn prev" href="javascript:void(0);"></a>
+		<a class="btn play" href="javascript:void(0);"></a>
+		<a class="btn pause" href="javascript:void(0);"></a>
+		<a class="btn next" href="javascript:void(0);"></a>
+	</div>
+	<!-- END: Audio Controller -->
+	
+	<!-- BEGIN: Footer -->
+	<div id="footer">
+		<div id="footertext"> Copyright &copy; 2017 | 漫站论坛</div>
+		<audio autoplay="autoplay"><source src="MP3/xiangce.mp3" type="audio/mpeg" /></audio>
+
+		<!-- BEGIN: Background Controller Buttons -->
+		<div id="bgControl">
+			<a class="prev" href="javascript:void(0);" onClick="prevBg()"></a>
+			<a class="play" href="javascript:void(0);" onClick="playBg()"></a>
+			<a class="pause" href="javascript:void(0);" onClick="pauseBg()"></a>
+			<a class="next" href="javascript:void(0);" onClick="nextBg()"></a>
+		</div>
+		<!-- END: Background Controller Buttons -->
+		
+		<!-- BEGIN: Share Buttons -->
+		<div id="share">
+			<ul>
+				
+			</ul>		
+		</div>
+		<!-- END: Share Buttons -->
+	</div>
+	<!-- END: Footer -->
+	
+	<!-- BEGIN: Audio List 
+		// Every li includes a song url. But it doesn't contain file extensions.
+		Because some off browsers support .mp3 and others support .ogg format. It automatically recognise it.
+		For the wider browser support you should put filename.mp3, filename.ogg formats to the folder.
+	-->
+	
+	<!-- END: Audio List -->
+</div>
+
+<!-- BEGIN: First Loading; Please don't remove this element -->
+<div id="bodyLoading">
+	<div id="loading">
+	  正在努力中。。。<br/>
+		<img src="images/loading1.gif" width="200" height="" alt="loading" />
+	</div>
+</div>
+<!-- END: First Loading -->
+</div>
+</body>
+</html>
